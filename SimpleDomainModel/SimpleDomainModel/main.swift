@@ -114,25 +114,25 @@ open class Person {
   fileprivate var _job : Job? = nil
   open var job : Job? {
     get {
-        return self.job
+        return self._job
     }
     set(value) {
-        if self.age >= 16 {
-            self.job = value
+        if (self.age >= 16) {
+            self._job = value
         } else {
-            self.job = nil
+            self._job = nil
         }
     }
   }
   
   fileprivate var _spouse : Person? = nil
   open var spouse : Person? {
-    get { return self.spouse }
+    get { return self._spouse }
     set(value) {
-        if self.age >= 18 {
-            self.spouse = value
+        if (self.age >= 18) {
+            self._spouse = value
         } else {
-            self.spouse = nil
+            self._spouse = nil
         }
     }
   }
