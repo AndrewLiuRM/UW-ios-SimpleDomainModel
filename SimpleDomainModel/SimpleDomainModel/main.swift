@@ -25,28 +25,31 @@ open class TestMe {
 //
 public struct Money {
   public var amount : Int
-  public var currency : String
-  
-  public func convert(_ to: String) -> Money {
-    if (Money.getCurrency(to) != 0.0) {
-        return Money(amount: Int((Double(amount) / Money.getCurrency(currency)) * Money.getCurrency(to)), currency: to);
-    } else {
-        return self;
+  public var currency : CurrencyType
+    
+    public enum CurrencyType {
+        case GBP
+        case USD
+        case EUR
+        case CAN
     }
+  
+  public func convert(_ to: CurrencyType) -> Money {
+
+    return Money(amount: Int((Double(amount) / Money.getCurrency(currency)) * Money.getCurrency(to)), currency: to);
+
   }
     
-  private static func getCurrency(_ to: String) -> Double {
+  private static func getCurrency(_ to: CurrencyType) -> Double {
       switch to {
-      case "GBP":
+      case .GBP:
           return 0.5;
-      case "USD":
+      case .USD:
           return 1.0;
-      case "EUR":
+      case .EUR:
           return 1.5;
-      case "CAN":
+      case .CAN:
           return 1.25;
-      default:
-          return 0.0;
       }
   }
   
